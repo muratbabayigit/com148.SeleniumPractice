@@ -1,6 +1,7 @@
 package day01;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -28,11 +29,12 @@ public class P06_SelenimTest {
         driver.findElement(By.id("occupation")).sendKeys("Insrtuctor");
         driver.findElement(By.id("male")).click();
         driver.findElement(By.id("city")).sendKeys("İstanbul");
-        driver.findElement(By.id("country")).sendKeys("Türkiye");
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
-        String expectedMessage = "Your information has been successfully saved:";
-        String actualMessage = driver.findElement(By.id("resutMessage")).getText();
-        if (actualMessage.equals(expectedMessage)) {
+        driver.findElement(By.id("country")).sendKeys("Türkiye"+ Keys.TAB+ Keys.TAB+ Keys.TAB);
+        driver.findElement(By.xpath("//img[@src='img/save.png']")).click();
+        String expectedMessage = "Your information has been successfully saved";
+        String actualMessage = driver.findElement(By.id("resultMessage")).getText();
+
+        if (actualMessage.contains(expectedMessage)) {
             System.out.println("Kayıt Başarıyla Oluşturuldu");
         }else{
             System.out.println(expectedMessage+"\n Kayıt Oluşturulamadı");
